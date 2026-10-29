@@ -1,0 +1,71 @@
+Statistical Summary Report
+========================
+
+Transactions (with outliers):
+Statistics Report: transactions
+Count: 35
+Mean: 93.11428571428571
+Median: 94.0
+Mode: [132.0, 73.0]
+Variance: 502.5747899159664
+Standard deviation: 22.418179897484237
+Q1: 73.0
+Q2: 94.0
+Q3: 110.0
+IQR: 37.0
+Lower fence: 17.5
+Upper fence: 165.5
+Outliers: []
+
+Transactions (without outliers):
+Statistics Report: transactions (without outliers)
+Count: 35
+Mean: 93.11428571428571
+Median: 94.0
+Mode: [132.0, 73.0]
+Variance: 502.5747899159664
+Standard deviation: 22.418179897484237
+Q1: 73.0
+Q2: 94.0
+Q3: 110.0
+IQR: 37.0
+Lower fence: 17.5
+Upper fence: 165.5
+Outliers: []
+
+Daily Deposits (with outliers):
+Statistics Report: daily_deposits_kes
+Count: 35
+Mean: 22400.00342857143
+Median: 18805.47
+Mode: [14582.97, 19708.28, 21684.0, 16857.73, 14247.27, 20029.64, 22014.19, 14362.83, 20758.97, 20017.07, 21643.87, 18174.3, 17622.44, 26725.69, 17575.83, 15988.21, 96500.0, 18805.47, 18965.0, 17396.43, 19373.89, 20715.67, 22009.77, 12772.7, 20745.52, 13956.97, 1200.0, 13783.85, 18506.72, 16008.59, 88400.0, 29060.99, 18344.46, 21195.44, 14265.36]
+Variance: 328019873.35939974
+Standard deviation: 18111.318929315992
+Q1: 15988.21
+Q2: 18805.47
+Q3: 21195.44
+IQR: 5207.23
+Lower fence: 8177.365
+Upper fence: 29006.284999999996
+Outliers: [96500.0, 1200.0, 88400.0, 29060.99]
+
+Daily Deposits (without outliers):
+Statistics Report: daily_deposits_kes (without outliers)
+Count: 31
+Mean: 18349.64935483871
+Median: 18506.72
+Mode: [14582.97, 19708.28, 21684.0, 16857.73, 14247.27, 20029.64, 22014.19, 14362.83, 20758.97, 20017.07, 21643.87, 18174.3, 17622.44, 26725.69, 17575.83, 15988.21, 18805.47, 18965.0, 17396.43, 19373.89, 20715.67, 22009.77, 12772.7, 20745.52, 13956.97, 13783.85, 18506.72, 16008.59, 18344.46, 21195.44, 14265.36]
+Variance: 10116378.520946234
+Standard deviation: 3180.625492092119
+Q1: 15988.21
+Q2: 18506.72
+Q3: 20745.52
+IQR: 4757.310000000001
+Lower fence: 8852.244999999997
+Upper fence: 27881.485
+Outliers: []
+
+Risk Assessment:
+- Outliers in the transactions data may indicate unusual spending patterns or potential fraud.
+- The daily deposits data shows a few unusually high amounts, which could be due to large transfers or errors.
+- It's important to investigate these outliers further to understand their cause and determine if any action is needed.
