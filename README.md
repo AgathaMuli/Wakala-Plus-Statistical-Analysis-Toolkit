@@ -1,19 +1,64 @@
-## Overview
-Wakala Plus runs a network of M-Pesa agents around Nairobi, Thika, Machakos and Nakuru. Its risk team watches daily deposit totals per agent: unusually high or low days can mean fraud, a float shortage or a data-entry error.
-
-They want a small, dependable statistics toolkit they understand line by line, not a black box. You must implement every calculation yourself in plain Python first; NumPy is permitted only afterwards, to verify that your numbers agree. The data comes from agents typing figures into a phone app, so expect gaps, placeholders and typos alongside a few days that really are extreme.
-
-
 # Agent Transaction Analytics
 
-This module provides helper utilities to compute variance and standard deviation using pure Python math operations.
+Wakala Plus runs a network of M-Pesa agents across Nairobi, Thika, Machakos and Nakuru. The risk team monitors daily deposits and transaction counts to spot fraud, float shortages and data-entry issues. This project implements the calculations in plain Python and compares the results with NumPy only for verification.
 
-## Formula Selection Rationale
+## Project structure
 
-### Which formula suits this dataset?
-For this operational dataset, **Sample Variance and Sample Standard Deviation ($n - 1$)** are the correct configurations to use.
+```text
+day3assignment/
+├── README.md
+├── analysis.ipynb
+├── pyproject.toml
+├── test_stats_toolkit.py
+├── stats_toolkit.py
+├── data/
+│   └── agent_deposits.csv
+├── output/
+│   └── stats_report.txt
+└── src/
+    └── day3assignment/
+        └── __init__.py
+```
 
-### Why?
-* **Partial Temporal Window:** The dataset only tracks transaction records spanning from September 1, 2026, through October 10, 2026. It does not encompass the entire lifetime operations of these banking agents, nor does it capture a complete fiscal cycle.
-* **Statistical Inference:** Because this data represents a fractional window of ongoing business activity, it must be classified as a *sample* rather than a complete population.
-* **Bias Correction:** Calculating variance using the population divisor ($n$) on a sample introduces downward bias, consistently underestimating the true variability of the system. Applying Bessel's Correction ($n - 1$) mathematically neutralizes this bias, ensuring a reliable estimate of operational volatility across the entire agent network.
+## Project goals
+
+The toolkit is designed to do the following:
+
+- Load a CSV column and reject missing or invalid values.
+- Calculate mean, median and mode without using the statistics module.
+- Compute variance and standard deviation using sample or population divisors.
+- Detect outliers with the IQR method and a configurable fence factor.
+- Wrap a single column in a reusable StatisticsAnalyzer object.
+- Generate a summary report and compare the results against NumPy.
+
+## Formula selection
+
+For this operational dataset, sample variance and sample standard deviation are the correct choices. The records cover a limited window of activity rather than a full operational lifetime, so the sample formula avoids the downward bias that appears when the population divisor is used on partial data.
+
+## Dataset handling rules
+
+The loader rejects values such as empty strings, NA, N A, null, none, dash placeholders and malformed numeric text. Valid values are kept and used in all later calculations.
+
+## How to run
+
+From the project root, run the test suite:
+
+```bash
+python -m unittest -v
+```
+
+To generate the report from the notebook, open analysis.ipynb and run all cells in order. The output will be written to:
+
+```text
+output/stats_report.txt
+```
+
+You can also run the toolkit script directly:
+
+```bash
+python starter\ \(2\).py
+```
+
+## Notes
+
+The code in stats_toolkit.py keeps every calculation transparent and easy to audit. NumPy is imported only inside compare_with_numpy so the report can be validated against the same values using a tolerance check.
